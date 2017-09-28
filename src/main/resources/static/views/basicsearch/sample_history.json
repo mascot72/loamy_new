@@ -1,0 +1,91 @@
+{
+  "message": {
+    "result": {
+      "list": [{
+        "id": 18,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] N ===> Y\n",
+        "comment": null,
+        "workDate": 1463399396000,
+        "editor": "안용상"
+      }, {
+        "id": 17,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] Y ===> N\n",
+        "comment": null,
+        "workDate": 1463399394000,
+        "editor": "안용상"
+      }, {
+        "id": 7,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] N ===> Y\n",
+        "comment": null,
+        "workDate": 1463392356000,
+        "editor": "안용상"
+      }, {
+        "id": 6,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] Y ===> N\n",
+        "comment": null,
+        "workDate": 1463141997000,
+        "editor": "안용상"
+      }, {
+        "id": 5,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] N ===> Y\n",
+        "comment": null,
+        "workDate": 1463132569000,
+        "editor": "안용상"
+      }, {
+        "id": 4,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] Y ===> N\n",
+        "comment": null,
+        "workDate": 1463127949000,
+        "editor": "안용상"
+      }, {
+        "id": 3,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] N ===> Y\n",
+        "comment": null,
+        "workDate": 1463125134000,
+        "editor": "안용상"
+      }, {
+        "id": 2,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] Y ===> N\n",
+        "comment": null,
+        "workDate": 1463125097000,
+        "editor": "안용상"
+      }, {
+        "id": 1,
+        "relId": 1,
+        "type": "ContextSearch",
+        "workMode": "mod",
+        "description": "[노출여부] Y ===> N\n",
+        "comment": null,
+        "workDate": 1463122396000,
+        "editor": "안용상"
+      }]
+    },
+    "@service": "com.navercorp.beirut",
+    "@type": "response",
+    "@version": "1.0.0"
+  }
+}

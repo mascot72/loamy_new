@@ -1,0 +1,151 @@
+<div class="panel panel-default mg-left-lg mg-right-lg well well-sm sample-show-hide">
+    <div class="panel-body">
+        <form name="vm.searchForm" role="form" novalidate ng-submit="vm.search()">
+            <div class="row"><!-- Row 1 -->
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="query" class="input-group-addon">검색키워드</label>
+                            <input type="text" id="query" ng-model="vm.options.query" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="useYn" class="input-group-addon">노출여부</label>
+                            <select id="category" name="category" ng-model="vm.editItem.category" class="form-control" style="border-radius:0px; -webkit-appearance:none;">
+                                <option value="">노출여부를 선택하세요</option>
+                                <option ng-repeat="opt in vm.useYns" label="{{opt.name}}" value="{{opt.id}}">{{opt.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default mg-left-lg mg-right-lg">
+
+    <div class="panel-body pd-reset">
+        <div class="table-responsive">
+            <table class="form_table">
+				<colgroup>
+					<col width="150">
+					<col width="*">
+				</colgroup>
+				<tbody>
+				<tr>
+					<th scope="col">Board ID</th>
+					<td><input type='text' name='boardId' class='text' ng-model="vm.editItem.boardId" size='80'/> </td>
+				</tr>
+				<tr>
+					<th scope="col">제목</th>
+					<td><input type='text' name='subject' class='text' ng-model="vm.editItem.subject" size='80'/> </td>
+				</tr>
+				<tr>
+					<th scope="col">설교자/강사</th>
+					<td><input type='text' name='preacher' class='text' ng-model="vm.editItem.preacher"/> </td>
+				</tr>
+				<tr>
+					<th scope="col">성경본문</th>
+					<td><input type='text' name='bible' class='text' ng-model="vm.editItem.bible"/> </td>
+				</tr>
+				<tr>
+					<th scope="col">설교일</th>
+					<td><input type='text' id='preachDate' name='preachDate' class='text' ng-model="vm.editItem.preachDate" size='10' maxlength='10' readonly onchange="changePreachDate();"/> 
+					
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">비디오&nbsp;경로</th>
+					<td><input type='text' name='videoUrl' id="videoUrl" class='text' ng-model="vm.editItem.videoUrl" size='80'/> 
+					<input type="button" onclick="view_content('videoUrl', 'video');" value="비디오 URL 확인" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">비메오&nbsp;경로</th>
+					<td><input type='text' id='subVideoUrl' name='subVideoUrl' class='text' ng-model="vm.editItem.subVideoUrl" size='80'/> 
+					<input type="button" onclick="view_content('sub_video_url', 'vimeo');" value="비메오 URL 확인" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">오디오&nbsp;경로</th>
+					<td>
+					<input type='text' name='mp3Url' id='mp3Url' class='text' ng-model="vm.editItem.mp3Url" size='80'/>
+					<input type="button" onclick="view_content('mp3_url', 'audio');" value="오디오 URL 확인" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">썸네일&nbsp;경로</th>
+					<td><input type='text' name='thumbnailUrl' id='thumbnailUrl' class='text' ng-model="vm.editItem.thumbnailUrl" size='80'/>
+					<input type="button" onclick="view_content('thumbnail_url', 'image');" value="이미지 URL 확인" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">내용</th>
+					<td><textarea name='contents' class='text' ng-model="vm.editItem.contents" rows="3"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">추가 내용 1</th> 
+					<td><input type='text' name='subContents1' id='subContents1' class='text' ng-model="vm.editItem.subContents1" size='80' onchange="changeSubContents();"/>
+					<label>BROADCAST_01 (간증1 게시물번호)</label>
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">추가 내용 2</th>
+					<td><input type='text' name='subContents2' id='subContents2' class='text' ng-model="vm.editItem.subContents2" size='80' onchange="changeSubContents();"/>
+					(간증2,3 게시물번호 [,]로 연결)
+					</td>
+				</tr>
+				<div id="viewContents"></div>
+				<tr>
+					<th scope="col">시리즈</th>
+					<td>
+						<select name="categoryId">						
+							<option value=''></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">시리즈 설교</th>
+					<td>
+					
+						시리즈 명 : [category_name], 번호 : category.orderNum <input type="button" onclick="deleteSeries();" value="시리즈에서 삭제" />
+						<input type="hidden" name="category_Id" value="">					
+							<select name="category_Id">
+								<option value=''></option>
+							</select>
+							<input type="button" onclick="insertSeries();" value="시리즈에 추가" /> 
+					</#if>
+					</td>
+				</tr>
+				<tr>
+					<th scope="col">변경기록</th>
+					<td>
+					
+					</td>
+				</tr>
+				</tbody>
+				</table>
+            
+        </div>
+        <!--<div class="text-center" ng-if="options.totalCount == 0">-->
+        <!--<h4>결과가 없습니다.</h4>-->
+        <!--</div>-->
+
+        <div style="text-align:center">
+	        <button class="btn btn-warning" type="button" ng-click="vm.saveDetail()">Update</button>
+	        <button class="btn btn-success" type="button" ng-click="vm.editItem = null">Cancel</button>
+        </div>
+    </div>
+</div> <!-- panel -->
+<script>
+	$(document).ready(function(){
+		//$("#preach_date").datepicker({showOn: 'both', buttonImage: 'http://www.sujioog.org/images/btn_calendar.gif', buttonImageOnly: true, dateFormat: 'yy-mm-dd'});
+
+	});
+</script>

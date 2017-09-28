@@ -1,0 +1,228 @@
+.pager {
+	margin: 0px;
+}
+
+.pager a {
+	padding:2px 3px;
+}
+
+.pagination {
+	margin : 0 !important;
+}
+
+.pagination > li.active {
+	font-weight : bold;
+}
+
+.input-date {
+	width: 140px !important;
+}
+
+.link {
+	cursor: pointer;
+}
+
+.between {
+	margin: 0 5px;
+
+}
+
+.mg {
+	margin: 10px !important;
+}
+
+.mg-sm {
+	margin: 5px !important;
+}
+
+.mg-lg {
+	margin: 15px !important;
+}
+
+.mg-top {
+	margin-top: 10px !important;
+}
+
+.mg-top-sm {
+	margin-top: 5px !important;
+}
+
+.mg-top-lg {
+	margin-top: 15px !important;
+}
+
+.mg-bottom {
+	margin-bottom: 10px !important;
+}
+
+.mg-bottom-sm {
+	margin-bottom: 5px !important;
+}
+
+.mg-bottom-lg {
+	margin-bottom: 15px !important;
+}
+
+.mg-left {
+	margin-left: 10px !important;
+}
+
+.mg-left-sm {
+	margin-left: 5px !important;
+}
+
+.mg-left-lg {
+	margin-left: 15px !important;
+}
+
+.mg-right {
+	margin-right: 10px !important;
+}
+
+.mg-right-sm {
+	margin-right: 5px !important;
+}
+
+.mg-right-lg {
+	margin-right: 15px !important;
+}
+
+.mg-reset {
+	margin: 0  !important;
+}
+
+.pd {
+	padding: 10px !important;
+}
+
+.pd-sm {
+	padding: 5px !important;
+}
+
+.pd-lg {
+	padding: 15px !important;
+}
+
+.pd-top {
+	padding-top: 10px !important;
+}
+
+.pd-top-sm {
+	padding-top: 5px !important;
+}
+
+.pd-top-lg {
+	padding-top: 15px !important;
+}
+
+.pd-bottom {
+	padding-bottom: 10px !important;
+}
+
+.pd-bottom-sm {
+	padding-bottom: 5px !important;
+}
+
+.pd-bottom-lg {
+	padding-bottom: 15px !important;
+}
+
+.pd-left {
+	padding-left: 10px !important;
+}
+
+.pd-left-sm {
+	padding-left: 5px !important;
+}
+
+.pd-left-lg {
+	padding-left: 15px !important;
+}
+
+.pd-right {
+	padding-right: 10px !important;
+}
+
+.pd-right-sm {
+	padding-right: 5px !important;
+}
+
+.pd-right-lg {
+	padding-right: 15px !important;
+}
+
+.pd-reset {
+	padding: 0	!important;
+}
+
+.spacing {
+	display: block;
+	margin: 0 0 15px;
+	border: none;
+}
+
+.spacing-lg {
+	display: block;
+	margin: 0 0 20px;
+	border: none;
+}
+
+.spacing-sm {
+	display: block;
+	margin: 0 0 10px;
+	border: none;
+}
+
+.ellipsis {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+}
+
+.table-ellipsis {
+	table-layout: fixed;
+}
+
+@media (max-width: 768px) {
+	.table-ellipsis {
+		table-layout: auto;
+	}
+}
+
+body {
+	font-family: "나눔고딕", NanumGothic, "맑은고딕", malgun gothic, "돋움", dotum, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 1.7;
+	color: #555555;
+	background-color: #ffffff;
+}
+
+.tab-content {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.keywords-as-label {
+	display: inline-block;
+}
+
+.uploaded-thumbnail {
+	min-height: 120px;
+}
+
+.is-breakable {
+	word-wrap: break-word;
+}
+
+/*
+bootstrap tooltip 의 max width가 200px 이기 때문에 tootip text 가 잘리는 문제가 있다.
+이를 해결하기 위한 css
+*/
+.tooltip-inner {
+	max-width: 500px;
+	width: 500px;
+}

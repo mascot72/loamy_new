@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.sujigood</groupId>
+	<artifactId>sujigood</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>수지선한목자교회홈페이지</name>
+	<description>수지선한목자교회 홈페이지 develped by SpringBoot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- default 1.8 -->
+		<java.version>1.8</java.version>
+	</properties>
+
+	<!--<repositories>-->
+		<!--<repository>-->
+			<!--<id>nhn.release.repository</id>-->
+			<!--<url>http://repo.nhncorp.com/maven2/</url>-->
+			<!--<releases>-->
+				<!--<enabled>true</enabled>-->
+			<!--</releases>-->
+			<!--<snapshots>-->
+				<!--<enabled>false</enabled>-->
+			<!--</snapshots>-->
+		<!--</repository>-->
+		<!--<repository>-->
+			<!--<id>nhn.snapshot.repository</id>-->
+			<!--<url>http://repo.nhncorp.com/m2-snapshot-repository</url>-->
+			<!--<snapshots>-->
+				<!--<enabled>true</enabled>-->
+				<!--<updatePolicy>always</updatePolicy>-->
+			<!--</snapshots>-->
+			<!--<releases>-->
+				<!--<enabled>false</enabled>-->
+			<!--</releases>-->
+		<!--</repository>-->
+	<!--</repositories>-->
+
+	<!--<pluginRepositories>-->
+		<!--<pluginRepository>-->
+			<!--<id>nhn repository</id>-->
+			<!--<name>NHN Maven2 Repository</name>-->
+			<!--<url>http://repo.nhncorp.com/maven2</url>-->
+		<!--</pluginRepository>-->
+	<!--</pluginRepositories>-->
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+
+		<!-- 사용자 추가 library -->
+		<!-- JSR-330 API to replace @Autowired annotation with @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<!-- toString over -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- mybatis query logging -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
+		</dependency>
+
+		<!-- RestAPI documentation swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+		<!-- Java 객체(object)를 JSON 표현식으로 변환하는 API -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+		<!-- Joda-Time은 기본 JDK를 대체하는 날짜와 시간 API -->
+		<!-- Spring 프레임워크에서도 Joda-Time을 기본으로 지원한다.
+        Spring-web-mvc 프레임워크는 사용자가 입력한 문자열을 원하는 객체로 변환할 때 Converter라는 인터페이스를 활용하는데,
+        클래스 패스에 Joda-Time이 포함되어 있으면 이 라이브러리의 객체를 변화하는 Converter 구현체를 자동으로 등록한다.[28] -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>4.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>0.0.26</version>
+				<configuration>
+					<workingDirectory>./</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v0.12.2</nodeVersion>
+							<npmVersion>2.7.6</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<!-- Optional configuration which provides for running any npm command -->
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>bower install</id>
+						<goals>
+							<goal>bower</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources-${deploy.phase}</directory>
+			</resource>
+		</resources>
+	</build>
+
+	<profiles>
+		<!-- Local server -->
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<deploy.phase>local</deploy.phase>
+				<deploy-path>deploy</deploy-path>
+			</properties>
+		</profile>
+
+		<!-- Development server -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<deploy.phase>dev</deploy.phase>
+			</properties>
+		</profile>
+
+		<!-- QA server -->
+		<profile>
+			<id>alpha</id>
+			<properties>
+				<deploy.phase>alpha</deploy.phase>
+			</properties>
+		</profile>
+
+		<!-- Staging server -->
+		<profile>
+			<id>beta</id>
+			<properties>
+				<deploy.phase>beta</deploy.phase>
+			</properties>
+		</profile>
+
+		<!-- real server -->
+		<profile>
+			<id>release</id>
+			<properties>
+				<deploy.phase>release</deploy.phase>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

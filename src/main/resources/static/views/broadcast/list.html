@@ -1,0 +1,162 @@
+<div class="abcd panel panel-default mg-left-lg mg-right-lg">
+    <div class="panel-heading pd-top-sm pd-bottom-sm">
+        <h3>{{pageTitle}}</h3>
+    </div>
+	<div class="well well-sm" ng-init="vm.search(1)">
+           <div class="row"><!-- Row 1 -->
+               <div class="col-md-9 col-xs-12">
+                   <div class="form-group">
+                       <div class="input-group">
+                           <label for="query" class="input-group-addon">검색키워드</label>
+                           <input type="text" id="query" ng-model="vm.options.subject" class="form-control pressedEnter"/>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-3 col-xs-12">
+                   <div class="form-group">
+                       <div class="input-group">
+                           <label for="useYn" class="input-group-addon">사용여부</label>
+                           <select id="useYn" ng-model="vm.options.category"
+                                   ng-options="useYn.id as useYn.name for useYn in vm.useYns" class="form-control" style="border-radius:0px; -webkit-appearance:none;">
+                               <option value="">사용여부를 선택하세요</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="row"><!-- Row 2 -->
+               <div class="col-md-offset-6 col-md-6 col-xs-12">
+                   <div class="form-inline pull-right">                       
+                       <button type="button" class="form-control btn btn-primary" ng-click="vm.search(1)"><span class="glyphicon glyphicon-search"></span></button>
+                       <button class="btn btn-info" type="button" ng-click="vm.setMode('EDIT')"><span class="glyphicon glyphicon-pencil"></span></button>
+                       <input type="button" ng-csv="vm.csvList" ng-show="vm.csvList.length" csv-header="['ID', '출처', '등급', '타입', '등급수정시간', '등록일자', '수정일자', '수정자', 'comment']"
+                              filename="exportData" add-bom="true" class="form-control btn btn-primary" value="Export Excel"/>
+
+                       <button type="button" class="form-control btn btn-default" ng-click="vm.init()">
+                           <span class="glyphicon glyphicon-refresh"></span>
+                           <span class="button-text">Refresh</span>
+                       </button>
+                       
+                   </div>
+               </div>
+           </div>
+    </div>
+    <div class="panel-body pd-reset">
+    	<form name="vm.searchForm" role="form" novalidate ng-submit="vm.search(1)">
+    		<div class="panel-heading pd-top-sm pd-bottom-sm">
+		        <div class="row">
+		            <div class="col-md-3 col-xs-6">
+		                <p class="form-control-static">데이타 목록<span ng-show="vm.totalCount >= 0"> (<strong ng-bind="vm.totalCount | number"></strong> 건)</span></p>
+		
+		            </div>
+		            <div class="col-md-9 col-xs-6">
+		                <div class="form-inline pull-right form-group-sm">
+		                    <label for="selPage" class="control-label">페이지 사이즈</label>
+		                    <select id="selPage" class="form-control" ng-options="item as item for item in vm.pageSizes track by item" ng-model="vm.pageSize" ng-change="vm.pageSizeChanged()"></select>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+	        <div class="table-responsive">
+	            <table class="table table-striped table-bordered table-hover">
+	                <thead>
+	                <tr>
+	                    <th class="text-center"><a ng-click="vm.sort('seqNum')">ID</a></th>
+	                    <th class="text-center"><a ng-click="vm.sort('subject')">제목.</a></th>
+	                    <th class="text-center"><a ng-click="vm.sort('readNum')">조회수</a></th>
+	                    <th class="text-center">종류.</th>
+	                    <th class="text-center">내용.</th>
+	                    <th class="text-center">수정일</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                <tr ng-repeat="board in vm.list" class="repeated-item">
+	                    <td class="text-center"><a ng-click="vm.edit(board)">{{board.seqNum}}</a></td>
+	                    <td class="text-center"><a ng-click="vm.viewVimeo(board.subVideoUrl)">{{board.subject}}</a></td>
+	                    <td class="text-center">{{board.readNum | number}}</td>
+	                    <td class="text-center">{{board.preacher}}</td>
+	                    <td class="text-center">{{board.contents}}</td>
+	                    <td class="text-center">{{board.regDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+	                </tr>
+	                <tr ng-show="vm.list.length < 1">
+	                	<td colspan="6"><div role="alert" style="height:200px;margin:0 auto; text-align:center; padding:0; line-height:200px;"><span class="glyphicon glyphicon-warning-sign"></span> Not Found!</div></td>
+	                </tr>
+	                </tbody>
+	            </table>
+	        </div>	        
+	        
+
+		    <div class="panel-heading pd-top-sm pd-bottom-sm">
+		        <div class="row" ng-show="vm.totalCount > 0">
+		            <p class="col-sm-12 text-center">
+		                <span ng-show="vm.totalCount > 0" uib-pagination total-items="vm.totalCount" ng-model="vm.page" ng-change="vm.pageChanged()"
+		                      max-size="10" rotate="false" items-per-page="vm.pageSize" class="pagination-xs" boundary-links="true" first-text="◀맨앞" last-text="맨뒤▶" previous-text="<이전" next-text="이후>"></span>
+		            </p>
+		        </div>
+
+		    </div>
+		    
+		    <div id="made-in-ny" style="text-align:center;"></div>
+		    
+	        <ng-include src="vm.viewFile()"></ng-include>
+        </form>
+    </div>
+</div>
+<script>
+	
+	$(document).ready(function(){
+	
+		$('.pressedEnter').keypress( function(e) {
+			if (e.which == 13) {
+				cntr.search(1);	//search first page...
+			}
+		});		
+		$('#query').focus();
+	});
+
+
+</script>
+<style>
+	.sample-show-hide {
+	  transition: all linear 0.5s;
+	}
+	.sample-show-hide.ng-hide {
+	  opacity: 0;
+	}
+	/*
+	  We're using CSS transitions for when
+	  the enter and move events are triggered
+	  for the element that has the .repeated-item
+	  class
+	*/
+	.repeated-item.ng-enter, .repeated-item.ng-move {
+	  transition: all 0.5s linear;
+	  opacity: 0;
+	}
+	
+	/*
+	 The ng-enter-active and ng-move-active
+	 are where the transition destination properties
+	 are set so that the animation knows what to
+	 animate.
+	*/
+	.repeated-item.ng-enter.ng-enter-active,
+	.repeated-item.ng-move.ng-move-active {
+	  opacity: 1;
+	}
+	
+	/*
+	  We're using CSS keyframe animations for when
+	  the leave event is triggered for the element
+	  that has the .repeated-item class
+	*/
+	.repeated-item.ng-leave {
+	  animation: 0.5s my_animation;
+	}
+	
+	@keyframes my_animation {
+	  from { opacity:1; }
+	  to { opacity:0; }
+	}
+</style>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sujigood.loamy.mapper.BoardMapper">
+	<resultMap id="boardResult" type="Board" autoMapping="true">
+ 		<!-- <collection property="files" javaType="ArrayList" ofType="BoardFile" resultMap="BoardFileResult" select="selectBoardFile" columnPrefix="post_"/> -->
+	</resultMap>
+	<resultMap id="BoardFileResult" type="BoardFile">
+			<id property="objNum" column="objNum"/>
+			<result property="seqNum" column="seqNum"/>			
+			<result property="boardId" column="board_id"/>
+			<result property="boardSeq" column="board_seq"/>
+			<result property="orgFilename" column="org_filename"/>
+			<result property="filedownload" column="filedownload"/>
+			<result property="regDate" column="regDate"/>
+			<result property="filename" column="filename"/>
+			<result property="filesize" column="filesize"/>
+			<result property="fileseq" column="fileseq"/>
+	</resultMap>
+    <sql id="whereClause">
+        <where>
+            <if test="seqNum != null and seqNum != 0">
+                AND seqNum = #{seqNum}
+            </if>
+            <if test="boardId != null and boardId != ''">
+                AND board_id = #{boardId}
+            </if>
+            <if test="objNum != null and objNum != 0">
+                AND objNum = #{objNum}
+            </if>
+            <if test="author != null and author != ''">
+                AND author = #{author}
+            </if>
+            <if test="subject != null and subject != ''">
+                AND subject LIKE '%${subject}%'
+            </if>
+            <if test="category != null and category != ''">
+                AND category = #{category}
+            </if>
+            <if test="regDate != null and regDate != ''">
+                AND regDate = #{regDate}
+            </if>
+            <if test="editDate != null">
+                AND editDate = #{editDate}
+            </if>
+            <if test="memoNum != null and memoNum != 0">
+                AND memoNum = #{memoNum}
+            </if>
+            <if test="readNum != null and readNum != 0">
+                AND readNum = #{readNum}
+            </if>
+            <if test="ipReg != null and ipReg != ''">
+                AND ip_reg = #{ipReg}
+            </if>
+            <if test="ipEdit != null and ipEdit != ''">
+                AND ip_edit = #{ipEdit}
+            </if>
+            <if test="contents != null and contents != ''">
+                AND contents LIKE '%' + #{contents} + '%'
+            </if>
+            <if test="docType != null and docType != ''">
+                AND docType = #{docType}
+            </if>
+        </where>
+    </sql>
+    <sql id="where-flag">
+		<where>
+			<if test="objNum != null and objNum != 0">
+				AND objNum = #{objNum} 
+			</if>
+			<if test="boardId != null and boardId != ''">
+				AND board_id = #{boardId} 
+			</if>
+			<if test="boardSeq != null and boardSeq != 0">
+				AND board_seq = #{boardSeq}
+			</if>
+			<if test="filename != null and filename != ''">
+				AND filename = #{filename}
+			</if>
+		</where>
+	</sql>
+
+    <select id="selectBoard" parameterType="Board" resultMap="boardResult">
+		SELECT TOP ${pageSize} *
+		  FROM LOAMY_BOARD
+<!-- 			B.objNum AS post_objNum,
+			B.seqNum AS post_seqNum,
+			B.board_id AS post_bolard_id,
+			B.org_filename AS post_org_filename,
+			B.filedownload AS post_filedownload,
+			B.board_seq AS post_board_seq,
+			B.fileseq AS post_fileseq,
+			B.filesize AS post_filesize,
+			B.filename AS post_filename
+		  FROM LOAMY_BOARD A LEFT OUTER JOIN LOAMY_BOARD_FILE B ON A.objNum = B.objNum -->
+		  <include refid="whereClause"/>
+		  <if test="sort != null and sort != ''">
+		 	ORDER BY A.${sort}
+		  </if>
+    </select>
+    <select id="getBoard" parameterType="int" resultType="Board">
+    	SELECT *
+    	  FROM LOAMY_BOARD
+    	 WHERE seqNum = #{seqNum}
+    </select>
+    <select id="selectBoardPaged" parameterType="Board" resultType="Board">
+		DECLARE @RowsPerPage INT, @PageNumber INT
+		SET @RowsPerPage = #{pageSize}
+		SET @PageNumber = #{page}
+		SELECT *
+		  FROM (
+				SELECT *,
+				ROW_NUMBER() OVER (ORDER BY ${sort}) AS RowNum
+				FROM LOAMY_BOARD
+				<include refid="whereClause"/>
+				) AS GOOD
+		WHERE GOOD.RowNum BETWEEN ((@PageNumber-1)*@RowsPerPage)+1
+		AND @RowsPerPage*(@PageNumber)
+	</select>
+	
+	<select id="selectBoardFile" resultType="BoardFile">
+		SELECT TOP 100 *
+        FROM LOAMY_BOARD_FILE
+        <include refid="where-flag"/>
+		ORDER BY fileseq
+	</select>
+	
+	
+
+	<select id="selectBoardTotalCount" parameterType="Board" resultType="int">
+		SELECT count(*) FROM LOAMY_BOARD
+		<include refid="whereClause"/>
+	</select>
+	
+	<select id="totalCount" parameterType="Board" resultType="int">
+		SELECT count(*) FROM LOAMY_BOARD 
+		WHERE board_id = #board_id#
+	</select>
+	
+	<select id="totalCountSearch" parameterType="Board" resultType="int">
+		SELECT count(*) FROM LOAMY_BOARD 
+		WHERE board_id = #board_id# and (subject like '%$keyword$%' or contents like '%$keyword$%')
+	</select>
+	
+	<select id="totalCountCategory" parameterType="Board" resultType="int">
+		SELECT count(b.seqNum) FROM LOAMY_BOARD_CATEGORY as a, LOAMY_BOARD as b 
+		WHERE a.category_id=#category# and a.seqNum=b.seqNum
+	</select>
+	
+	<select id="selectLastBoardList" parameterType="Board" resultMap="boardResult">
+		SELECT TOP 3 *, '' as img_url, 0 as commentNum FROM LOAMY_BOARD
+		WHERE
+			board_id = #board_id#
+		ORDER BY seqNum DESC
+	</select>
+	<select id="selectLastRecommendList"  resultMap="boardResult">
+		SELECT TOP 3 *, '' as img_url, 0 as commentNum FROM LOAMY_BOARD
+		WHERE
+			board_id in ('BOARD_11','BOARD_13')
+		ORDER BY seqNum DESC
+	</select>
+	<select id="selectLastFreeDeptBoardList"  resultMap="boardResult">
+		SELECT TOP 3 seqNum, board_id, objNum, author, case board_id when 'BOARD_02' then '[자유] ' else '[부서] ' end + subject as subject, passwd, category, regDate, editDate, memoNum, readNum, ip_reg, ip_edit, usrAgent_reg, '' as usrAgent_edit, contents, '' as img_url, docType, 0 as commentNum FROM LOAMY_BOARD
+		WHERE
+			board_id in ('BOARD_02','BOARD_08')
+		ORDER BY seqNum DESC
+	</select>
+	<update id="updateBoard" parameterType="Board">
+		UPDATE LOAMY_BOARD
+		<set>
+            <if test="boardId != null and boardId !=''">
+                board_id = #{boardId}
+            </if>
+            <if test="objNum != null">
+                objNum = #{objNum}
+            </if>
+            <if test="author != null and author != ''">
+                author = #{author}
+            </if>
+            <if test="subject != null and subject != ''">
+                subject = #{subject}
+            </if>
+            <if test="passwd != null and passwd != ''">
+                passwd = #{passwd}
+            </if>
+            <if test="category != null and category != ''">
+                category = #{category}
+            </if>
+            <if test="regDate != null">
+                regDate = #{regDate}
+            </if>
+            <if test="editDate != null">
+                editDate = #{editDate}
+            </if>
+            <if test="memoNum != null">
+                memoNum = #{memoNum}
+            </if>
+            <if test="readNum != null">
+                readNum = #{readNum}
+            </if>
+            <if test="ip_reg != null and ip_reg != ''">
+                ip_reg = #{ip_reg}
+            </if>
+            <if test="ip_edit != null and ip_edit != ''">
+                ip_edit = #{ip_edit}
+            </if>
+            <if test="usrAgent_reg != null and usrAgent_reg != ''">
+                usrAgent_reg = #{usrAgent_reg}
+            </if>
+            <if test="usrAgent_edit != null and usrAgent_edit != ''">
+                usrAgent_edit = #{usrAgent_edit}
+            </if>
+            <if test="contents != null and contents != ''">
+                contents = #{contents}
+            </if>
+            <if test="docType != null and docType != ''">
+                docType = #{docType}
+            </if>
+		</set>
+		WHERE
+			seqNum = #seqNum#
+	</update>
+	<insert id="insertBoard" parameterType="Board">
+		INSERT INTO LOAMY_BOARD (
+				  board_id
+				, objNum
+				, author
+				, subject
+				, passwd
+				, category
+				, regDate
+				, editDate
+				, memoNum
+				, readNum
+				, ip_reg
+				, ip_edit
+				, usrAgent_reg
+				, usrAgent_edit
+				, contents
+			    , docType
+		) VALUES (		
+				  #{boardId}
+				, #{objNum}
+				, #{author}
+				, #{subject}
+				, #{passwd}
+				, #{category}
+				, #{regDate}
+				, #{editDate}
+				, #{memoNum}
+				, #{readNum}
+				, #{ip_reg}
+				, #{ip_edit}
+				, #{usrAgent_reg}
+				, #{usrAgent_edit}
+				, #{contents}
+			    , #{docType}
+		)
+		<selectKey resultType="int">
+			select MAX(seqNum) from LOAMY_BOARD
+		</selectKey>
+	</insert>
+	<select id="selectLastObjNum" parameterType="string" resultType="int">
+	    SELECT MAX(objNum) FROM LOAMY_BOARD
+	    WHERE board_id = #board_id#
+	</select>	
+	<select id="selectRecentOfferingData"  resultMap="boardResult">
+		SELECT *,'' AS img_url, 0 as commentNum 
+		FROM LOAMY_BOARD WHERE seqNum IN (
+			SELECT MAX(seqNum) FROM LOAMY_BOARD WHERE subject LIKE '%헌금자 명단%'
+		)
+	</select>	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM LOAMY_BOARD
+		WHERE seqNum = #seqNum#
+	</delete>
+</mapper>

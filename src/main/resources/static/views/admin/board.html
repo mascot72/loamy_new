@@ -1,0 +1,68 @@
+<div class="panel panel-default mg-left-lg mg-right-lg">
+    <div class="panel-heading pd-top-sm pd-bottom-sm">
+        <h3>{{pageTitle}}</h3>
+    </div>
+    <div class="panel-body pd-reset">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">BOARD</th>
+                    <th class="text-center">제목</th>
+                    <th class="text-center">조회수</th>
+                    <th class="text-center">작성자</th>
+                    <th class="text-center">등록일</th>
+                    <th class="text-center">Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="board in vm.list">
+                    <td class="text-center" ng-bind="board.seqNum"></td>
+                    <td class="text-center" ng-bind="board.boardId"></td>
+                    <td class="text-center" ng-bind="board.subject"></td>
+                    <td class="text-center" ng-bind="board.readNum | number"></td>
+                    <td class="text-center" ng-bind="board.author"></td>
+                    <td class="text-center" ng-bind="board.regDate | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                    <td class="text-right" ng-bind="board.files.length | number"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel-footer">
+    	<input type="text" ng-model="vm.options.subject" />
+    	<button type="button" ng-click="vm.search(1)" >Send</button>
+    	<input type="text" ng-model="vm.options.sort" value="regDate DESC"/>
+    	<input type="text" ng-model="vm.options.pageSize" value="10"/>
+    	
+    </div>
+    <h1>Vimeo Javascript oEmbed Example</h1>
+    <div id="embed">Loading video...</div>
+</div>
+
+<script>
+        // This is the URL of the video you want to load
+        var videoUrl = 'http://www.vimeo.com/203813459';
+        // This is the oEmbed endpoint for Vimeo (we're using JSON)
+        // (Vimeo also supports oEmbed discovery. See the PHP example.)
+        var endpoint = 'http://www.vimeo.com/api/oembed.json';
+        // Tell Vimeo what function to call
+        var callback = 'embedVideo';
+        // Put together the URL
+        var url = endpoint + '?url=' + encodeURIComponent(videoUrl) + '&callback=' + callback + '&width=640';
+        // This function puts the video on the page
+        function embedVideo(video) {
+        	console.log(video);
+            document.getElementById('embed').innerHTML = unescape(video.html);
+        }
+        // This function loads the data from Vimeo
+        function init() {
+            var js = document.createElement('script');
+            js.setAttribute('type', 'text/javascript');
+            js.setAttribute('src', url);
+            document.getElementsByTagName('head').item(0).appendChild(js);
+        }
+        // Call our init function when the page loads
+        window.onload = init;
+    </script>

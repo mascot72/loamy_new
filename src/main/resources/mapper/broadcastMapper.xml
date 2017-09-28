@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sujigood.loamy.mapper.BroadcastMapper">
+	<resultMap id="broadcastResult" type="Broadcast">
+		<result property="seqNum" column="seqNum"/>
+		<result property="boardId" column="board_id"/>
+		<result property="objNum" column="objNum"/>
+		<result property="author" column="author"/>   
+		<result property="subject" column="subject"/>   
+		<result property="passwd" column="passwd"/>   
+		<result property="category" column="category"/>   
+		<result property="regDate" column="regDate"/>  
+		<result property="editDate" column="editDate"/>   
+		<result property="memoNum" column="memoNum"/> 
+		<result property="readNum" column="readNum"/>  
+		<result property="ipReg" column="ip_reg"/>   
+		<result property="ipEdit" column="ip_edit"/>   
+		<result property="usrAgentReg" column="usrAgent_reg"/>   
+		<result property="usrAgentEdit" column="usrAgent_edit"/>   
+		<result property="contents" column="contents"/>
+		<result property="docType" column="docType"/>
+		<result property="commentNum" column="commentNum"/> 
+
+        <result property="preacher" column="preacher" />
+		<result property="bible" column="bible" />
+		<result property="preachDate" column="preach_date" />
+		<result property="videoUrl" column="video_url" />
+		<result property="subVideoUl" column="sub_video_url" />
+		<result property="mp3Url" column="mp3_url" />
+		<result property="contents" column="contents" />
+		<result property="subContents1" column="sub_contents1" />
+		<result property="subContents2" column="sub_contents2" />
+		<result property="praise" column="praise" />
+		<result property="hymns" column="hymns" />
+		<result property="praiseNum" column="praiseSeqNum"/>
+		<result property="hymnsNum" column="hymnsSeqNum"/>
+		<result property="thumbnailUrl" column="thumbnail_url" />
+	</resultMap>
+    <sql id="whereClause">
+        <where>
+            <if test="seqNum != null and seqNum != 0">
+                AND seqNum = #{seqNum}
+            </if>
+            <if test="boardId != null and boardId != ''">
+                AND board_id = #{boardId}
+            </if>
+           <if test="objNum != null and objNum != 0">
+                AND objNum = #{objNum}
+            </if>
+            <if test="author != null and author != ''">
+                AND author = #{author}
+            </if>
+            <if test="subject != null and subject != ''">
+                AND subject LIKE '%${subject}%'
+            </if>
+            <if test="category != null and category != ''">
+                AND category = #{category}
+            </if>
+            <if test="regDate != null">
+                AND regDate = #{regDate}
+            </if>
+            <if test="editDate != null">
+                AND editDate = #{editDate}
+            </if>
+            <if test="memoNum != null and memoNum != 0">
+                AND memoNum = #{memoNum}
+            </if>
+            <if test="contents != null and contents != ''">
+                AND contents LIKE '%' + #{contents} + '%'
+            </if>
+            <if test="category != null and category != ''">
+                AND category = #{category}
+            </if>
+        </where>
+    </sql>
+    <select id="selectBroadcast" parameterType="Broadcast" resultType="Broadcast">
+		SELECT *
+		  FROM LOAMY_BOARD_BROADCAST
+		  <include refid="whereClause"/>
+		 ORDER BY regDate DESC
+    </select>
+    <select id="getBroadcast" parameterType="int" resultType="Broadcast">
+    	SELECT *
+    	  FROM LOAMY_BOARD_BROADCAST
+    	 WHERE seqNum = #{seqNum}
+    </select>
+    <select id="selectBroadcastPaged" parameterType="Broadcast" resultType="Broadcast">
+		DECLARE @RowsPerPage INT, @PageNumber INT
+		SET @RowsPerPage = #{pageSize}
+		SET @PageNumber = #{page}
+		SELECT *
+		  FROM (
+				SELECT *,
+				ROW_NUMBER() OVER (ORDER BY ${sort}) AS RowNum
+				FROM LOAMY_BOARD_BROADCAST
+				<include refid="whereClause"/>
+				) AS GOOD
+		WHERE GOOD.RowNum BETWEEN ((@PageNumber-1)*@RowsPerPage)+1
+		AND @RowsPerPage*(@PageNumber)
+	</select>
+	
+	<select id="selectSearchBoardPagedList" parameterType="Broadcast" resultMap="broadcastResult">
+		SELECT B.* ,
+			(SELECT TOP 1 filename FROM LOAMY_BOARD_FILE WHERE board_id = #board_id# AND objNum = B.objNum ) AS img_url,
+			(SELECT count(*) FROM LOAMY_BOARD_COMMENT WHERE board_id = #board_id# AND objNum = B.objNum ) AS commentNum
+		FROM LOAMY_BOARD AS B WHERE board_id = #board_id# and seqNum IN 
+		    (SELECT TOP $listCountPerPage$ seqNum FROM LOAMY_BOARD WHERE seqNum in (select seqNum from LOAMY_SEARCH_DETAIL where search_seq = #search_seq# and board_id = #board_id#) and seqNum NOT IN
+		        (SELECT TOP $currentRowNum$ seqNum FROM LOAMY_BOARD WHERE seqNum in (select seqNum from LOAMY_SEARCH_DETAIL where search_seq = #search_seq# and board_id = #board_id#) ORDER BY seqNum desc)
+		    ORDER BY seqNum desc)
+		ORDER BY seqNum desc
+	</select>	
+	
+	<select id="selectBoardPagedListCategory" parameterType="Broadcast" resultMap="broadcastResult">
+		SELECT B.* ,
+			(SELECT TOP 1 filename FROM LOAMY_BOARD_FILE WHERE board_id = #board_id# AND objNum = B.objNum ) AS img_url,
+			(SELECT count(*) FROM LOAMY_BOARD_COMMENT WHERE board_id = #board_id# AND objNum = B.objNum ) AS commentNum
+		FROM LOAMY_BOARD_CATEGORY as A, LOAMY_BOARD AS B WHERE a.category_id=#category# and a.seqNum=b.seqNum and a.board_id = #board_id# and b.seqNum IN 
+		    (SELECT TOP $listCountPerPage$ b.seqNum FROM LOAMY_BOARD_CATEGORY as A, LOAMY_BOARD AS B WHERE a.category_id=#category# and a.seqNum=b.seqNum and a.board_id = #board_id# and b.seqNum NOT IN
+		        (SELECT TOP $currentRowNum$ b.seqNum FROM LOAMY_BOARD_CATEGORY as A, LOAMY_BOARD AS B WHERE a.category_id=#category# and a.seqNum=b.seqNum and a.board_id = #board_id# ORDER BY b.seqNum desc)
+		    ORDER BY b.seqNum desc)
+		ORDER BY b.seqNum desc
+	</select>
+
+	<select id="selectBroadcastTotalCount" parameterType="Broadcast" resultType="int">
+		SELECT count(*) FROM LOAMY_BOARD_BROADCAST
+		<include refid="whereClause"/>
+	</select>
+	
+	<select id="totalCountSearch" parameterType="Broadcast" resultType="int">
+		SELECT count(*) FROM LOAMY_BOARD_BROADCAST 
+		WHERE board_id = #board_id# and (subject like '%$keyword$%' or contents like '%$keyword$%')
+	</select>
+	
+	<select id="totalCountCategory" parameterType="Broadcast" resultType="int">
+		SELECT count(b.seqNum) FROM LOAMY_BOARD_CATEGORY as a, LOAMY_BOARD_BROADCAST as b 
+		WHERE a.category_id=#category# and a.seqNum=b.seqNum
+	</select>
+	
+	<select id="selectLastBoardList" parameterType="Broadcast" resultMap="broadcastResult">
+		SELECT TOP 3 *, '' as img_url, 0 as commentNum FROM LOAMY_BOARD_BROADCAST
+		WHERE
+			board_id = #board_id#
+		ORDER BY seqNum DESC
+	</select>
+	<select id="selectLastRecommendList"  resultMap="broadcastResult">
+		SELECT TOP 3 *, '' as img_url, 0 as commentNum FROM LOAMY_BOARD_BROADCAST
+		WHERE
+			board_id in ('BOARD_11','BOARD_13')
+		ORDER BY seqNum DESC
+	</select>
+	<select id="selectLastFreeDeptBoardList"  resultMap="broadcastResult">
+		SELECT TOP 3 seqNum, board_id, objNum, author, case board_id when 'BOARD_02' then '[자유] ' else '[부서] ' end + subject as subject, passwd, category, regDate, editDate, memoNum, readNum, ip_reg, ip_edit, usrAgent_reg, '' as usrAgent_edit, contents, '' as img_url, docType, 0 as commentNum FROM LOAMY_BOARD_BROADCAST
+		WHERE
+			board_id in ('BOARD_02','BOARD_08')
+		ORDER BY seqNum DESC
+	</select>
+	<update id="updateBroadcast" parameterType="Broadcast">
+		UPDATE LOAMY_BOARD_BROADCAST
+		<set>
+            <if test="boardId != null and boardId !=''">
+                board_id = #{boardId},
+            </if>
+            <if test="objNum != null">
+                objNum = #{objNum},
+            </if>
+            <if test="author != null and author != ''">
+                author = #{author},
+            </if>
+            <if test="subject != null and subject != ''">
+                subject = #{subject},
+            </if>
+            <if test="passwd != null and passwd != ''">
+                passwd = #{passwd},
+            </if>
+            <if test="category != null and category != ''">
+                category = #{category},
+            </if>
+            <if test="regDate != null">
+                regDate = #{regDate},
+            </if>
+            <if test="editDate != null">
+                editDate = #{editDate},
+            </if>
+            <if test="preacher != null">
+                preacher = #{preacher},
+            </if>
+            <if test="preachDate != null">
+                preach_date = #{preachDate},
+            </if>
+            <if test="memoNum != null">
+                memoNum = #{memoNum},
+            </if>
+            <if test="readNum != null">
+                readNum = #{readNum},
+            </if>
+            <if test="ipReg != null and ipReg != ''">
+                ip_reg = #{ipReg},
+            </if>
+            <if test="ipEdit != null and ipEdit != ''">
+                ip_edit = #{ipEdit},
+            </if>
+            <if test="usrAgentReg != null and usrAgentReg != ''">
+                usrAgent_reg = #{usrAgentReg},
+            </if>
+            <if test="usrAgentEdit != null and usrAgentEdit != ''">
+                usrAgent_edit = #{usrAgentEdit},
+            </if>
+            <if test="bible != null and bible != ''">
+                bible = #{bible},
+            </if>
+            <if test="subContents1 != null and subContents1 != ''">
+                sub_contents1 = #{subContents1},
+            </if>
+            <if test="subContents2 != null and subContents2 != ''">
+                sub_contents2 = #{subContents2},
+            </if>
+            <if test="videoUrl != null and videoUrl != ''">
+                video_url = #{videoUrl},
+            </if>
+            <if test="subVideoUrl != null and subVideoUrl != ''">
+                sub_video_url = #{subVideoUrl},
+            </if>
+            <if test="mp3Url != null and mp3Url != ''">
+                mp3_url = #{mp3Url},
+            </if>
+            <if test="thumbnailUrl != null and thumbnailUrl != ''">
+                thumbnail_url = #{thumbnailUrl},
+            </if>
+            <if test="contents != null and contents != ''">
+                contents = #{contents}
+            </if>
+		</set>
+		WHERE seqNum = #{seqNum}
+	</update>
+	<insert id="insertBroadcast" parameterType="Broadcast" useGeneratedKeys="true" keyColumn="seqNum">
+		INSERT INTO LOAMY_BOARD_BROADCAST (
+				  board_id
+				, objNum
+				, author
+				, subject
+				, passwd
+				, category
+				, regDate
+				, editDate
+				, memoNum
+				, readNum
+				, ip_reg
+				, ip_edit
+				, usrAgent_reg
+				, usrAgent_edit
+				, contents
+			    , preacher
+			    , preach_date
+			    , bible
+			    , video_url
+			    , mp3_url
+			    , sub_video_url
+			    , thumbnail_url
+			    , sub_contents1
+			    , sub_contents2    
+		) VALUES (		
+				  #{boardId}
+				, #{objNum}
+				, #{author}
+				, #{subject}
+				, #{passwd}
+				, #{category}
+				, #{regDate}
+				, #{editDate}
+				, #{memoNum}
+				, #{readNum}
+				, #{ipReg}
+				, #{ipEdit}
+				, #{usrAgentReg}
+				, #{usrAgentEdit}
+				, #{contents}
+			    , #{preacher}
+			    , #{preachDate}
+			    , #{bible}
+			    , #{videoUrl}
+			    , #{mp3Url}
+			    , #{subVideoUrl}
+			    , #{thumbnailUrl}
+			    , #{subContents1}
+			    , #{subContents2}
+		)
+	 	<selectKey resultType="int" order="AFTER" keyProperty="seqNum">
+			select IDENT_CURRENT('LOAMY_BOARD_BROADCAST')
+		</selectKey>
+	</insert>
+	<select id="selectLastObjNum" parameterType="string" resultType="int">
+	    SELECT MAX(objNum) FROM LOAMY_BOARD_BROADCAST
+	    WHERE board_id = #board_id#
+	</select>	
+	<select id="selectRecentOfferingData"  resultMap="broadcastResult">
+		SELECT *,'' AS img_url, 0 as commentNum 
+		FROM LOAMY_BOARD_BROADCAST WHERE seqNum IN (
+			SELECT MAX(seqNum) FROM LOAMY_BOARD_BROADCAST WHERE subject LIKE '%헌금자 명단%'
+		)
+	</select>
+	<delete id="deleteBroadcast" parameterType="int">
+		DELETE FROM LOAMY_BOARD_BROADCAST
+		WHERE seqNum = #seqNum#
+	</delete>
+</mapper>

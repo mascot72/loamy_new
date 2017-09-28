@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">-->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title ng-bind="pageTitle"></title>
+    <!-- Knit core CSS -->
+    <!--<link rel="stylesheet" href="/beirut/angular/css/knit.css">-->
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.css">
+    <!--ui multiselect component -->
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
+    <!-- swagger ui -->
+    <link rel="stylesheet" href="bower_components/angular-swagger-ui/dist/css/swagger-ui.css">
+    
+<!--     <base href="/"> -->
+
+</head>
+<body class="non-responsive abc" ng-app="app">
+
+<div class="container-full" ui-view></div>
+
+<div toaster-container toaster-options="{'position-class': 'toast-bottom-right'}"></div>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="bower_components/html5shiv/dist/html5shiv.js"></script>
+<script type="text/javascript" src="bower_components/respond/respond.min.js"></script>
+<![endif]-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery.browser/dist/jquery.browser.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-i18n/angular-locale_ko-kr.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-ui-utils/ui-utils.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angularjs-toaster/toaster.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/ng-json-export-excel/dest/json-export-excel.js"></script>
+<script src="bower_components/file-saver/FileSaver.min.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/ng-csv/build/ng-csv.js"></script>
+<!--ui multiselect component -->
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
+<!-- swagger ui -->
+<script src="bower_components/angular-swagger-ui/dist/scripts/swagger-ui.js"></script>
+<!-- vimeo -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script src="app.js"></script>
+<script src="config/app.constants.js"></script>
+
+<script src="config/app.router.config.js"></script>
+<script src="config/app.filter.js"></script>
+<script src="config/app.config.js"></script>
+
+<!-- common -->
+<script src="components/alert/alert.config.js"></script>
+<script src="components/alert/alert.service.js"></script>
+
+<!-- 서비스 -->
+<script src="services/restful.service.js"></script>
+
+<!-- controller -->
+<script src="views/apidoc/apidoc.js"></script>
+<script src="views/basicsearch/basic.search.history.controller.js"></script>
+
+<script src="views/admin/board.js"></script>
+<script src="views/broadcast/broadcast.js"></script>
+
+<script type="text/javascript">
+	var cntr;	// controller context객
+    var lemontree = {};
+
+    lemontree.redirectWithNoReferer = function(we, elLink) {
+
+        var sUrl = elLink.href;
+
+        console.log("sUrl", sUrl);
+        // IT시큐리티실이 지적한 보안 취약점 보완을 위해 replace 코드 추가
+        sUrl = sUrl.replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+        if ($.browser.msie) { // ie 는 window.open 만으로 제거됨
+            window.open(sUrl, "", "");
+            if (we.stopDefault)
+                we.stopDefault();
+        } else if ($.browser.mozilla) { // ff 는 meta refresh 를 이용하여 제거
+            if (!elLink.href.match(/^javascript:(.*)(meta)(.*)(http-equiv)(.*)(refresh)/)) {
+                elLink.href = "javascript:'<html><meta http-equiv=\"refresh\" content=\"0; url=" + encodeURIComponent(sUrl) + "\"></html>'";
+            }
+        } else { // chrome, safari 는 HTML5 noreferrer 속성을 지원함 (chrome 15 / safari 5 이상)
+            elLink.href = sUrl;
+            elLink.rel = "noreferrer";
+        }
+    }
+
+
+</script>
+</body>
+</html>

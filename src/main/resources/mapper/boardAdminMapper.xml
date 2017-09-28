@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sujigood.loamy.mapper.BoardAdminMapper">
+    <sql id="whereClause">
+        <where>
+            <if test="boardId != null and boardId != ''">
+                AND board_id = #{boardId}
+            </if>
+            <if test="boardName != null and boardName !=''">
+                AND boardName = #{boardName}
+            </if>
+            <if test="skin != null and skin != ''">
+                AND skin = #{skin}
+            </if>
+            <if test="totalCount != null">
+                AND totalCount = #{totalCount}
+            </if>
+            <if test="directoryPath != null and directoryPath != ''">
+                AND directoryPath = #{directoryPath}
+            </if>
+            <if test="listLevel != null">
+                AND listLevel = #{listLevel}
+            </if>
+            <if test="todayCount != null">
+                AND todayCount = #{todayCount}
+            </if>
+            <if test="viewLevel != null">
+                AND viewLevel = #{viewLevel}
+            </if>
+            <if test="secretLevel != null">
+                AND secretLevel = #{secretLevel}
+            </if>
+            <if test="writeLevel != null">
+                AND writeLevel = #{writeLevel}
+            </if>
+            <if test="replyLevel != null">
+                AND replyLevel = #{replyLevel}
+            </if>
+            <if test="memoWriteLevel != null">
+                AND memoWriteLevel = #{memoWriteLevel}
+            </if>
+            <if test="noticeWriteLevel != null">
+                AND noticeWriteLevel = #{noticeWriteLevel}
+            </if>
+            <if test="htmlLevel != null">
+                AND htmlLevel = #{htmlLevel}
+            </if>
+            <if test="deleteLevel != null">
+                AND deleteLevel = #{deleteLevel}
+            </if>
+            <if test="articleNum != null">
+                AND articleNum = #{articleNum}
+            </if>
+            <if test="replyLevel != null">
+                AND replyLevel = #{replyLevel}
+            </if>
+            <if test="curDate != null and curDate != ''">
+                AND curdate = #{curDate}
+            </if>
+            <if test="regDate != null and regDate != ''">
+                AND regdate = #{regDate}
+            </if>
+            <if test="editDate != null and editDate != ''">
+                AND editdate = #{editDate}
+            </if>
+        </where>
+    </sql>
+    <select id="selectBoardAdmin" parameterType="BoardAdmin" resultType="BoardAdmin">
+        SELECT
+            board_id AS boardId,
+            boardName,
+            skin,
+            totalCount,
+            directoryPath,
+            listLevel,
+            todayCount,
+            viewLevel,
+            secretLevel,
+            writeLevel,
+            replyLevel,
+            memoWriteLevel,
+            noticeWriteLevel,
+            htmlLevel,
+            deleteLevel,
+            articleNum,
+            curdate AS curDate,
+            regdate AS regDate,
+            editdate AS editDate
+        FROM LOAMY_BOARD_ADMIN
+        <include refid="whereClause"/>
+    </select>
+</mapper>

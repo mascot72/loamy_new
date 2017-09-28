@@ -1,0 +1,775 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Web Fonts -->
+	<style>
+		@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 300;
+		src: local('Open Sans Light'), local('OpenSans-Light'), url(http://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTaRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+		}
+		@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 400;
+		src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+		}
+		@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 600;
+		src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSqRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+		}
+	</style>
+	<!--link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'-->
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="assets/css/headers/header-v8.css">
+	<link rel="stylesheet" href="assets/css/footers/footer-default.css">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="assets/plugins/animate.css">
+	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fancybox/source/jquery.fancybox.css">
+	<link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+	<link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="assets/plugins/login-signup-modal-window/css/style.css">
+	<!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="assets/css/theme-colors/blue.css" id="style_color">
+	<link rel="stylesheet" href="assets/css/theme-skins/dark.css">
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="assets/css/custom.css">
+<!-- 	<base href="home"> -->
+</head>
+
+<body class="header-fixed header-fixed-space-v2" ng-app="firstApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+	<div class="wrapper page-option-v1">
+		<!--=== Header v8 ===-->
+		<div class="header-v8 header-sticky">
+			<!-- Topbar blog -->
+			<div class="blog-topbar">
+				<div class="topbar-search-block">
+					<div class="container">
+						<form action="">
+							<input type="text" class="form-control" placeholder="Search">
+							<div class="search-close"><i class="icon-close"></i></div>
+						</form>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-8 col-xs-8">
+							<div class="topbar-time">Friday, Mar 13th 2015</div>
+							<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+							<ul class="topbar-list topbar-menu">
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Contact</a></li>
+								<li><a href="#">Forums</a></li>
+								<li>
+									<a href="javascript:void(0);">Dropdown</a>
+									<ul class="topbar-dropdown">
+										<li><a href="#">Dropdown</a></li>
+										<li><a href="#">Dropdown</a></li>
+										<li class="topbar-submenu">
+											<a href="javascript:void(0);">Submenu</a>
+											<ul class="topbar-submenu-in">
+												<li><a href="#">Submenu</a></li>
+												<li><a href="#">Submenu</a></li>
+												<li class="topbar-submenu">
+													<a href="javascript:void(0);">Submenu</a>
+													<ul class="topbar-submenu-in">
+														<li><a href="#">Submenu</a></li>
+														<li><a href="#">Submenu</a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Login</a></strong></li>
+								<li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Register</a></strong></li>
+							</ul>
+						</div>
+						<div class="col-sm-4 col-xs-4 clearfix">
+							<i class="fa fa-search search-btn pull-right"></i>
+							<ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+								<li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Login</a></li>
+								<li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Register</a></li>
+							</ul>
+						</div>
+					</div><!--/end row-->
+				</div><!--/end container-->
+			</div>
+			<!-- End Topbar blog -->
+
+			<!-- Navbar -->
+			<div class="navbar mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="res-container">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<div class="navbar-brand">
+							<a href="index.html">
+								<img src="assets/img/logo1-default.png" alt="Logo">
+							</a>
+						</div>
+					</div><!--/end responsive container-->
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<div class="res-container">
+							<ul class="nav navbar-nav">
+								<!-- Home -->
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										교회안내
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="index.html">핵심가치</a></li>
+										<li class="dropdown-submenu">
+											<a href="javascript:void(0);">섬기는 이</a>
+										</li>
+										<li><a href="page_home1.html">연혁</a></li>
+										<li><a href="page_home2.html">예배 및 모임안내</a></li>
+										<li><a href="page_home5.html">부서 및 조직소개</a></li>
+										<li><a href="page_home4.html">새가족 안내 </a></li>
+										<li><a href="page_home7.html">오시는 길</a></li>
+										<li><a href="page_home16.html">교회 프로그램</a></li>
+										<li><a href="page_home18.html">온라인 행정</a></li>
+									</ul>
+								</li>
+								<!-- End Home -->
+
+								<!-- World -->
+								<li class="dropdown mega-menu-fullwidth">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										인터넷방송
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="mega-menu-content">
+												<div class="container">
+													<div class="row">
+														<div class="col-md-2 md-margin-bottom-30">
+															<ul class="dropdown-link-list">
+																<li><a href="#">주일에배</a></li>
+																<li><a href="#">수요중보예배</a></li>
+																<li><a href="#">금요성령집회</a></li>
+																<li><a href="#">새벽예배</a></li>
+																<li><a href="#">특별새벽예배</a></li>
+																<li class="dropdown-submenu">
+																	<a href="javascript:void(0);">시리즈설교</a>
+																	<ul class="dropdown-menu">
+																		<li><a target="_blank" href="Blog-Magazine/blog_page_layouts1.html">Page Layouts v1</a></li>
+																		<li><a target="_blank" href="Blog-Magazine/blog_page_layouts2.html">Page Layouts v2</a></li>
+																		<li><a target="_blank" href="Blog-Magazine/blog_page_layouts3.html">Page Layouts v3</a></li>
+																		<li><a target="_blank" href="Blog-Magazine/blog_page_layouts4.html">Page Layouts v4</a></li>
+																	</ul>
+																</li>
+																<li><a href="#">초빙강사</a></li>
+																<li><a href="#">간증</a></li>
+																<li><a href="#">찬양</a></li>
+																<li><a href="#">행사</a></li>
+																<li><a href="#">특별예배</a></li>
+																<li><a href="#">(수)수요예배</a></li>
+															</ul>
+														</div>
+														<div class="col-md-5 md-margin-bottom-30">
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img16.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img12.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Starbucks is introducing new coffee</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img15.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">The benefits of tea</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+														</div>
+														<div class="col-md-5">
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img26.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Salted dessert recipes that walk the fine line of...</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img23.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-30">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img24.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<!-- End World -->
+
+								<!-- Fashion -->
+								<li class="dropdown mega-menu-fullwidth">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										커뮤니티
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="mega-menu-content">
+												<div class="container">
+													<div class="row">
+														<div class="col-md-3 md-margin-bottom-30">
+															<ul class="dropdown-link-list">
+																<li><a href="#">교회소식</a></li>
+																<li><a href="#">자유게시판</a></li>
+																<li><a href="#">자료실</a></li>
+																<li><a href="#">갤러리</a></li>
+																<li><a href="#">부서게시판</a></li>
+																<li><a href="#">기획위원 자료실</a></li>
+																<li><a href="#">새예배당 소식</a></li>
+															</ul>
+														</div>
+														<div class="col-md-5 md-margin-bottom-30">
+															<!-- Blog Grid -->
+															<div class="blog-grid">
+																<img class="img-responsive" src="assets/img/main/img9.jpg" alt="">
+																<h3 class="blog-grid-title-sm"><a href="blog_single.html">Is this the end for fashion police?</a></h3>
+															</div>
+															<!-- End Blog Grid -->
+														</div>
+														<div class="col-md-4">
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img16.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Nadège Vanhee-Cybulski makes Hermès debut</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img15.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as Paris shows draw to a close</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-30">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img17.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys and bunnies</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<!-- End Fashion -->
+
+								<!-- Archives -->
+								<li class="dropdown mega-menu-fullwidth">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										젊은이 교회
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="mega-menu-content">
+												<div class="container">
+													<div class="row">
+														<div class="col-md-3 md-margin-bottom-30">
+															<h2>젊은이 교회 소개</h2>
+															<ul class="dropdown-link-list">
+																<li><a href="#">World</a></li>
+																<li><a href="#">Economy</a></li>
+																<li><a href="#">Sport</a></li>
+																<li><a href="#">Fashion</a></li>
+																<li><a href="#">Health</a></li>
+																<li><a href="#">Travel</a></li>
+																<li><a href="#">Lifestyle</a></li>
+																<li><a href="#">Hi-Tech</a></li>
+															</ul>
+														</div>
+														<div class="col-md-3 md-margin-bottom-30">
+															<h2>젊은이 예배</h2>
+															<ul class="dropdown-link-list">
+																<li><a href="#">World</a></li>
+																<li><a href="#">Economy</a></li>
+																<li><a href="#">Sport</a></li>
+																<li><a href="#">Fashion</a></li>
+																<li><a href="#">Health</a></li>
+																<li><a href="#">Travel</a></li>
+																<li><a href="#">Lifestyle</a></li>
+																<li><a href="#">Hi-Tech</a></li>
+															</ul>
+														</div>
+														<div class="col-md-3 md-margin-bottom-30">
+															<h2>젊은이 게시판</h2>
+															<ul class="dropdown-link-list">
+																<li><a href="#">World</a></li>
+																<li><a href="#">Economy</a></li>
+																<li><a href="#">Sport</a></li>
+																<li><a href="#">Fashion</a></li>
+																<li><a href="#">Health</a></li>
+																<li><a href="#">Travel</a></li>
+																<li><a href="#">Lifestyle</a></li>
+																<li><a href="#">Hi-Tech</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<!-- End Archives -->
+
+								<!-- Lifestyle -->
+								<li class="dropdown mega-menu-fullwidth">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										영적 성장의 길
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="mega-menu-content">
+												<div class="container">
+													<div class="row">
+														<div class="col-md-4 md-margin-bottom-30">
+															<div class="blog-grid">
+																<img class="img-responsive" src="assets/img/main/img6.jpg" alt="">
+																<h3 class="blog-grid-title-sm"><a href="blog_single.html">Malaika Firth tells all: 'I met my boyfriend through Twitter'</a></h3>
+															</div>
+														</div>
+														<div class="col-md-4 md-margin-bottom-30">
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img3.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img17.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Starbucks is introducing new coffee</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb md-margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img25.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">The benefits of tea</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+														</div>
+														<div class="col-md-4">
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img26.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Salted dessert recipes that walk the fine line of...</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb margin-bottom-20">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img18.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+
+															<!-- Blog Thumb -->
+															<div class="blog-thumb md-margin-bottom-30">
+																<div class="blog-thumb-hover">
+																	<img src="assets/img/main/img8.jpg" alt="">
+																	<a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
+																</div>
+																<div class="blog-thumb-desc">
+																	<h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
+																	<ul class="blog-thumb-info">
+																		<li>Mar 6, 2015</li>
+																		<li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+																	</ul>
+																</div>
+															</div>
+															<!-- End Blog Thumb -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<!-- End Lifestyle -->
+
+
+							</ul>
+						</div><!--/responsive container-->
+					</div><!--/navbar-collapse-->
+				</div><!--/end contaoner-->
+			</div>
+			<!-- End Navbar -->
+		</div>
+		<!--=== End Header v8 ===-->
+
+		<ng-include src="'views/home/sujigood.html'"></ng-include>
+		<div class="header">
+			<div class="navbar navbar-inverse" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#/">첫번째</a>
+					</div>
+					<div class="collapse navbar-collapse" id="js-navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#/">Home</a></li>
+							<li><a ng-href="#/about">About</a></li>
+							<li><a ng-href="#/todo">Todo</a></li>
+							<li><a ng-href="#/contact">Contact</a></li>
+							<li><a ng-href="#/home/sujigood">Sujigood</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/wrapper-->
+	<!--=== Footer ===-->
+    <div class="footer">
+        <div id="footer-default" class="footer-default">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 md-margin-bottom-40">
+							<!-- About -->
+							<div class="headline"><h2>About</h2></div>
+							<p class="margin-bottom-25 md-margin-bottom-40">Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals.</p>
+							<!-- End About -->
+
+							<!-- Monthly Newsletter -->
+							<div class="headline"><h2>Monthly Newsletter</h2></div>
+							<p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+							<form class="footer-subscribe">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Email Address">
+									<span class="input-group-btn">
+										<button class="btn-u" type="button">Subscribe</button>
+									</span>
+								</div>
+							</form>
+							<!-- End Monthly Newsletter -->
+						</div><!--/col-md-4-->
+
+						<div class="col-md-4 md-margin-bottom-40">
+							<!-- Recent Blogs -->
+							<div class="posts">
+								<div class="headline"><h2>Recent Blog Entries</h2></div>
+								<dl class="dl-horizontal">
+									<dt><a href="#"><img src="assets/img/sliders/elastislide/6.jpg" alt="" /></a></dt>
+									<dd>
+										<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+									</dd>
+								</dl>
+								<dl class="dl-horizontal">
+									<dt><a href="#"><img src="assets/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
+									<dd>
+										<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+									</dd>
+								</dl>
+								<dl class="dl-horizontal">
+									<dt><a href="#"><img src="assets/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
+									<dd>
+										<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+									</dd>
+								</dl>
+							</div>
+							<!-- End Recent Blogs -->
+						</div><!--/col-md-4-->
+
+						<div class="col-md-4">
+							<!-- Contact Us -->
+							<div class="headline"><h2>Contact Us</h2></div>
+							<address class="md-margin-bottom-40">
+								경기도 용인시 <br />
+								수지구 신봉동 126-1 <br />
+								대흥빌딩 4층<br />
+								Phone: 031 265 0191 <br />
+								Fax: 031 276 8291 <br />
+								Email: <a href="mailto:info@sujigood.org" class="">info@sujigood.org</a>
+							</address>
+							<!-- End Contact Us -->
+
+							<!-- Social Links -->
+							<div class="headline"><h2>Stay Connected</h2></div>
+							<ul class="social-icons">
+								<li><a href="#" data-original-title="Feed" class="social_rss"></a></li>
+								<li><a href="#" data-original-title="Facebook" class="social_facebook"></a></li>
+								<li><a href="#" data-original-title="Twitter" class="social_twitter"></a></li>
+								<li><a href="#" data-original-title="Goole Plus" class="social_googleplus"></a></li>
+								<li><a href="#" data-original-title="Pinterest" class="social_pintrest"></a></li>
+								<li><a href="#" data-original-title="Linkedin" class="social_linkedin"></a></li>
+								<li><a href="#" data-original-title="Vimeo" class="social_vimeo"></a></li>
+							</ul>
+							<!-- End Social Links -->
+						</div><!--/col-md-4-->
+					</div>
+				</div>
+			</div><!--/footer-->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2016 &copy; Sujigood Shepherd Church. ALL Rights Reserved.
+								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<a href="index.html">
+								<img class="pull-right" id="logo-footer" src="assets/img/logo2-default.png" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div><!--/copyright-->
+		</div>
+    </div>
+    <!--=== End Footer ===-->
+
+<script type="text/javascript">
+
+// var model = {};
+
+
+        // call the tablesorter plugin
+        // $("[data-sort=table]").tablesorter({
+        //     // Sort on the second column, in ascending order
+        //     sortList: [[1,0]]
+        // });
+        //$('body').addClass('dark');
+
+
+
+</script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/sujigood.js"></script>
+    <!-- endbuild -->
+
+    <!--여기서부터는 Bootstrap theme - Dashboard-->
+    <script src="assets/js/plugins/chart.js"></script>
+    <script src="assets/js/plugins/tablesorter.min.js"></script>
+    <script src="assets/js/plugins/toolkit.js"></script>
+
+    <!--end 여기서부터는 Bootstrap theme - Dashboard-->
+
+	<!-- <script src="assets/js/plugins/snowparticle.1.js"></script> -->
+</body>
+
+</html>
