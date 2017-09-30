@@ -1,2 +1,2 @@
 // homecontroller
-var j;
+var i=0, j;
