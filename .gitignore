@@ -1,5 +1,4 @@
 node_modules/
-log/
 node/
 ~/
 src/test/
@@ -7,7 +6,6 @@ target/
 log/
 .vscode/
 .settings/
-etc/
 
 application.properties
 
