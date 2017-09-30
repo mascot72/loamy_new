@@ -1,1 +1,2 @@
 // homecontroller
+var j;
