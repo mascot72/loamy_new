@@ -3,9 +3,7 @@ node/
 ~/
 src/test/
 target/
-log/
 .vscode/
-.settings/
 
 application.properties
 
